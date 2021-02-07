@@ -1,14 +1,14 @@
-import React, { Component, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import SimpleStorageContract from "./contracts/SimpleStorage.json"
 import getWeb3 from "./getWeb3"
 
 import "./App.css"
 
-function App () {
+function App() {
   const [web3State, setWeb3State] = useState(null)
 
   useEffect(() => {
-    async function web3Setup () {
+    async function web3Setup() {
       const web3 = await getWeb3()
       setWeb3State(web3)
 
@@ -21,7 +21,7 @@ function App () {
         deployedNetwork && deployedNetwork.address,
       )
 
-      await contract.methods.set(2).send({ from: accounts[0] }) // needs metamask approval
+      // await contract.methods.set(2).send({ from: accounts[0] }) // needs metamask approval
 
       const response = await contract.methods.get().call()
       console.log('Got response', response)
