@@ -25,7 +25,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"get\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"x\",\"type\":\"uint256\"}],\"name\":\"set\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/hp/Documents/denver-hack/crypto-plants/contracts/SimpleStorage.sol\":\"SimpleStorage\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/hp/Documents/denver-hack/crypto-plants/contracts/SimpleStorage.sol\":{\"keccak256\":\"0xd04017c7a543597039b38dc62729e65facba60ac21dfe700dadbd0e4bc760995\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7dddb2fd016a5081aa672606d861041e46a50e3f8876b0d652376029cb60963d\",\"dweb:/ipfs/QmYRB9DkPZKUappszUTYjhzDEtThiUERcJn7bnsm3AoL1S\"]}},\"version\":1}",
@@ -582,9 +583,17 @@
     "name": "solc",
     "version": "0.7.6+commit.7338295f.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x81829EBBE93Bea012dd20ecC5884264E303b28C3",
+      "transactionHash": "0xf4cf3a0b4f636546e9f13ad0d3879efc32dbcf53e6fbeef532d76fba86f2627b"
+    }
+  },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-02-07T14:43:42.743Z",
+  "updatedAt": "2021-02-07T15:28:07.287Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},
