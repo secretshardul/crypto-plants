@@ -1,0 +1,20 @@
+# Setup
+```sh
+# truffle setup (https://www.trufflesuite.com/boxes/react)
+mkdir crypto-plants
+truffle unbox react
+
+# Start local chain using truffle and deploy contract
+truffle develop
+compile
+migrate
+
+
+# Transfer eth to metamask wallet
+curl -X POST http://127.0.0.1:8545/ \
+    -d '{"jsonrpc":"2.0","method":"eth_sendTransaction","params": [{"from":"0x243566e830705ce95b09ae66705c8b291b333310", "to":"0x549deAF2d8819B49Bae0C4d43Da90D65dCBF29C9", "value": 1e18}], "id":1}'
+# from: address copied from truffle develop console
+# to: metamask address
+
+
+```
