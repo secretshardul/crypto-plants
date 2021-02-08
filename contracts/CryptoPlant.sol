@@ -4,9 +4,11 @@ pragma solidity ^0.7;
 import "../client/node_modules/@openzeppelin/contracts/presets/ERC721PresetMinterPauserAutoId.sol";
 
 contract CryptoPlant is ERC721PresetMinterPauserAutoId {
-    constructor(
-        string memory name,
-        string memory symbol,
-        string memory baseURI
-    ) ERC721PresetMinterPauserAutoId(name, symbol, baseURI) {}
+    constructor()
+        ERC721PresetMinterPauserAutoId(
+            "CryptoPlant",
+            "CPT",
+            "https://my-json-server.typicode.com/abcoathup/samplenft/tokens/"
+        )
+    {}
 }
