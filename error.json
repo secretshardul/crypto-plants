@@ -1,0 +1,18 @@
+{
+    "value": {
+        "code": -32603,
+        "data": {
+            "message": "VM Exception while processing transaction: revert",
+            "code": -32000,
+            "data": {
+                "0xa133a7f9e4b644f5e29777fdfb3a0ccf0096ef67a26f83666bb3ce5ac4c5a3c3": {
+                    "error": "revert",
+                    "program_counter": 523,
+                    "return": "0x"
+                },
+                "stack": "RuntimeError: VM Exception while processing transaction: revert\n    at Function.RuntimeError.fromResults (/Users/hp/.nvm/versions/node/v12.19.1/lib/node_modules/truffle/build/webpack:/node_modules/ganache-core/lib/utils/runtimeerror.js: 94: 1)\n    at BlockchainDouble.processBlock (/Users/hp/.nvm/versions/node/v12.19.1/lib/node_modules/truffle/build/webpack:/node_modules/ganache-core/lib/blockchain_double.js: 627: 1)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js: 97: 5)",
+                "name": "RuntimeError"
+            }
+        }
+    }
+}
