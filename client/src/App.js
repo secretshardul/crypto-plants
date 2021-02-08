@@ -28,15 +28,15 @@ function App () {
       )
       setCryptoPlantContract(cryptoPlantContract)
       try {
-        // const tokenCount = await cryptoPlantContract.methods.balanceOf(accounts[0]).call()
-        // console.log('Got balance', tokenCount)
+        const tokenCount = await cryptoPlantContract.methods.balanceOf(accounts[0]).call()
+        console.log('Got balance', tokenCount)
 
-        // for (let tokenIndex = 0; tokenIndex < tokenCount; tokenIndex++) {
-        //   const token = await cryptoPlantContract.methods
-        //     .tokenOfOwnerByIndex(accounts[0], tokenIndex)
-        //     .call()
-        //   console.log(`Token ${tokenIndex}: ${token}`)
-        // }
+        for (let tokenIndex = 0; tokenIndex < tokenCount; tokenIndex++) {
+          const token = await cryptoPlantContract.methods
+            .tokenOfOwnerByIndex(accounts[0], tokenIndex)
+            .call()
+          console.log(`Token ${tokenIndex}: ${token}`)
+        }
 
       } catch (error) {
         console.error(error)

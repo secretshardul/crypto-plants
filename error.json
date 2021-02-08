@@ -2,15 +2,16 @@
     "value": {
         "code": -32603,
         "data": {
-            "message": "VM Exception while processing transaction: revert",
+            "message": "VM Exception while processing transaction: revert ERC721PresetMinterPauserAutoId: must have minter role to mint",
             "code": -32000,
             "data": {
-                "0xa133a7f9e4b644f5e29777fdfb3a0ccf0096ef67a26f83666bb3ce5ac4c5a3c3": {
+                "0x0802ec5eddb8c23427b11dc297089c34541f788746b426974f2bfe40cc354ba1": {
                     "error": "revert",
-                    "program_counter": 523,
-                    "return": "0x"
+                    "program_counter": 5721,
+                    "return": "0x08c379a00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000003d4552433732315072657365744d696e7465725061757365724175746f49643a206d7573742068617665206d696e74657220726f6c6520746f206d696e74000000",
+                    "reason": "ERC721PresetMinterPauserAutoId: must have minter role to mint"
                 },
-                "stack": "RuntimeError: VM Exception while processing transaction: revert\n    at Function.RuntimeError.fromResults (/Users/hp/.nvm/versions/node/v12.19.1/lib/node_modules/truffle/build/webpack:/node_modules/ganache-core/lib/utils/runtimeerror.js: 94: 1)\n    at BlockchainDouble.processBlock (/Users/hp/.nvm/versions/node/v12.19.1/lib/node_modules/truffle/build/webpack:/node_modules/ganache-core/lib/blockchain_double.js: 627: 1)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js: 97: 5)",
+                "stack": "RuntimeError: VM Exception while processing transaction: revert ERC721PresetMinterPauserAutoId: must have minter role to mint\n    at Function.RuntimeError.fromResults (/Users/hp/.nvm/versions/node/v12.19.1/lib/node_modules/truffle/build/webpack:/node_modules/ganache-core/lib/utils/runtimeerror.js: 94: 1)\n    at BlockchainDouble.processBlock (/Users/hp/.nvm/versions/node/v12.19.1/lib/node_modules/truffle/build/webpack:/node_modules/ganache-core/lib/blockchain_double.js: 627: 1)\n    at runMicrotasks (<anonymous>)\n    at processTicksAndRejections (internal/process/task_queues.js: 97: 5)",
                 "name": "RuntimeError"
             }
         }

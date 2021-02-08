@@ -1,9 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7;
 
+import "../client/node_modules/@openzeppelin/contracts/utils/Counters.sol";
 import "../client/node_modules/@openzeppelin/contracts/presets/ERC721PresetMinterPauserAutoId.sol";
 
 contract CryptoPlant is ERC721PresetMinterPauserAutoId {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIdTracker;
+
     address payable public petaAddress;
 
     constructor()
@@ -22,5 +26,9 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId {
         require(msg.value == 0.1 ether);
 
         petaAddress.transfer(0.09 ether);
+
+        // Mint token
+        _mint(msg.sender, _tokenIdTracker.current());
+        _tokenIdTracker.increment();
     }
 }
