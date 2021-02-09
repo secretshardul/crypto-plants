@@ -28,6 +28,9 @@ function App () {
       )
       setCryptoPlantContract(cryptoPlantContract)
       try {
+        const baseURI = await cryptoPlantContract.methods.baseURI().call()
+        console.log('Base URI', baseURI)
+
         const tokenCount = await cryptoPlantContract.methods.balanceOf(accounts[0]).call()
         console.log('Got balance', tokenCount)
 
@@ -36,6 +39,9 @@ function App () {
             .tokenOfOwnerByIndex(accounts[0], tokenIndex)
             .call()
           console.log(`Token ${tokenIndex}: ${token}`)
+
+          const tokenData = await fetch(baseURI + token)
+          console.log('Token data', tokenData)
         }
 
       } catch (error) {
