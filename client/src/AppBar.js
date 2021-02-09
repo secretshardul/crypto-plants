@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -35,7 +34,6 @@ export default function ButtonAppBar () {
                     <Typography variant="h6" className={classes.title}>
                         CryptoPlants
                     </Typography>
-                    <Link to="/about">About</Link>
                     <Button color="inherit" onClick={() => navigate('/')}>My plants</Button>
                     <Button color="inherit" onClick={() => navigate('/buy')}>Purchase</Button>
                 </Toolbar>
