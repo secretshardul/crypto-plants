@@ -1,9 +1,11 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,6 +21,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar () {
     const classes = useStyles()
+    const history = useHistory()
+
+    function navigate (route) {
+        console.log('navigating to', route)
+        history.push(route)
+    }
 
     return (
         <div className={classes.root}>
@@ -26,9 +34,10 @@ export default function ButtonAppBar () {
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
                         CryptoPlants
-          </Typography>
-                    <Button color="inherit">My plants</Button>
-                    <Button color="inherit">Purchase</Button>
+                    </Typography>
+                    <Link to="/about">About</Link>
+                    <Button color="inherit" onClick={() => navigate('/')}>My plants</Button>
+                    <Button color="inherit" onClick={() => navigate('/buy')}>Purchase</Button>
                 </Toolbar>
             </AppBar>
         </div>

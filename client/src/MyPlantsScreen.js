@@ -6,7 +6,8 @@ import ButtonAppBar from "./AppBar"
 export default function MyPlants ({ web3, cryptoPlantContract, account }) {
     return (
         <Fragment>
-            <div>Plant</div>
+            <ButtonAppBar />
+            <div> Plant</div>
         </Fragment>
     )
 }

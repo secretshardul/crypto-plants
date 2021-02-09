@@ -1,9 +1,16 @@
 import React, { Fragment, useEffect, useState } from "react"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom"
 import CryptoPlantContract from "./contracts/CryptoPlant.json"
 import getWeb3 from "./getWeb3"
 
 import "./App.css"
 import PurchasePlantScreen from "./PurchasePlantScreen"
+import MyPlantsScreen from "./MyPlantsScreen"
 
 function App () {
   const [web3State, setWeb3State] = useState(undefined)
@@ -55,7 +62,17 @@ function App () {
 
   return (
     web3State ?
-      <PurchasePlantScreen web3={web3State} cryptoPlantContract={cryptoPlantContract} account={account} />
+      <Router>
+        <Switch>
+          <Route path="/buy">
+            <PurchasePlantScreen web3={web3State} cryptoPlantContract={cryptoPlantContract} account={account} />
+          </Route>
+          <Route path="/">
+            <MyPlantsScreen web3={web3State} cryptoPlantContract={cryptoPlantContract} account={account} />
+          </Route>
+        </Switch>
+      </Router>
+
       // <Fragment>
       //   <ButtonAppBar />
       //   <button onClick={purchaseSeed}>Purchase</button>
