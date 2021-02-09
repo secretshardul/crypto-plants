@@ -37,7 +37,7 @@ export default function PlantCard () {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
+            <CardActions >
                 <Button size="small" color="primary">
                     Share
                 </Button>
