@@ -1,10 +1,9 @@
 import React, { Fragment, useEffect, useState } from "react"
-import { utils } from "web3"
-import SimpleStorageContract from "./contracts/SimpleStorage.json"
 import CryptoPlantContract from "./contracts/CryptoPlant.json"
 import getWeb3 from "./getWeb3"
 
 import "./App.css"
+import PurchasePlantScreen from "./PurchasePlantScreen"
 
 function App () {
   const [web3State, setWeb3State] = useState(undefined)
@@ -52,31 +51,15 @@ function App () {
     web3Setup()
   }, [])
 
-  async function purchaseSeed () {
-    console.log('Purchasing seed')
 
-    try {
-      const purchaseSeed = await cryptoPlantContract.methods
-        .purchaseSeed()
-        .send({
-          from: account,
-          gas: 1500000,
-          gasPrice: '30000',
-          value: utils.toWei('0.1', 'ether')
-        })
-
-      console.log('Seed purchase response', purchaseSeed)
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   return (
     web3State ?
-      <Fragment>
-        <h1>Crypto plants</h1>
-        <button onClick={purchaseSeed}>Purchase</button>
-      </Fragment>
+      <PurchasePlantScreen web3={web3State} cryptoPlantContract={cryptoPlantContract} account={account} />
+      // <Fragment>
+      //   <ButtonAppBar />
+      //   <button onClick={purchaseSeed}>Purchase</button>
+      // </Fragment>
       : <h1>Loading</h1>
   )
 }
