@@ -37,8 +37,6 @@ function App () {
     web3Setup()
   }, [])
 
-
-
   return (
     web3State && cryptoPlantContract && account ?
       <Router>
