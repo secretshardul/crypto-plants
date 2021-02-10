@@ -33,27 +33,6 @@ function App () {
         network && network.address,
       )
       setCryptoPlantContract(cryptoPlantContract)
-      try {
-        const baseURI = await cryptoPlantContract.methods.baseURI().call()
-        console.log('Base URI', baseURI)
-
-        const tokenCount = await cryptoPlantContract.methods.balanceOf(accounts[0]).call()
-        console.log('Got balance', tokenCount)
-
-        for (let tokenIndex = 0; tokenIndex < tokenCount; tokenIndex++) {
-          const token = await cryptoPlantContract.methods
-            .tokenOfOwnerByIndex(accounts[0], tokenIndex)
-            .call()
-          console.log(`Token ${tokenIndex}: ${token}`)
-
-          const tokenData = await fetch(baseURI + token)
-          console.log('Token data', tokenData)
-        }
-
-      } catch (error) {
-        console.error(error)
-      }
-
     }
     web3Setup()
   }, [])
@@ -61,7 +40,7 @@ function App () {
 
 
   return (
-    web3State ?
+    web3State && cryptoPlantContract && account ?
       <Router>
         <Switch>
           <Route path="/buy">

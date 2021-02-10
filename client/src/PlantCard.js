@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     },
 })
 
-export default function PlantCard () {
+export default function PlantCard ({ name, description, image }) {
     const classes = useStyles()
 
     return (
@@ -25,15 +25,15 @@ export default function PlantCard () {
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                    image="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Pescia%2C_museo_del_bonsai%2C_punica_granatum%2C_stile_moyogi_%28eretto_informale%29%2C_con_frutti.jpg/527px-Pescia%2C_museo_del_bonsai%2C_punica_granatum%2C_stile_moyogi_%28eretto_informale%29%2C_con_frutti.jpg"
-                    title="Plant"
+                    image={image}
+                    title={name}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Plant
+                        {name}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Offsets 80kg CO2 per year
+                        {description}
                     </Typography>
                 </CardContent>
             </CardActionArea>

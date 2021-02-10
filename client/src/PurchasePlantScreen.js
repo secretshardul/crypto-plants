@@ -40,7 +40,7 @@ export default function PurchasePlantScreen ({ web3, cryptoPlantContract, accoun
                     <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
                         <CharityCard
                             name="World Wildlife Fund (WWF) seed"
-                            description="Support WWF's groundbreaking work in protecting biodiversity."
+                            description="Support WWF's groundbreaking work in protecting biodiversity. The funds will be used towards endangered species protection."
                             image="https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/wwf-512.png"
                             purchaseHandler={purchaseSeed}
                         />

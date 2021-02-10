@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { utils } from "web3"
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
@@ -17,44 +17,50 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
     },
     gridList: {
-        // width: 500,
-        // height: 450,
-        // height: 800,
         textAlign: 'center'
     },
 }))
 
 export default function MyPlants ({ web3, cryptoPlantContract, account }) {
     const classes = useStyles()
+    const [userTokens, setUserTokens] = useState([])
+    useEffect(() => {
+        async function getTokenData () {
+            try {
+                const baseURI = await cryptoPlantContract.methods.baseURI().call()
+                console.log('Base URI', baseURI)
 
-    const tileData = [
-        {
-            img: 'https://material-ui.com/static/sponsors/doit-intl.png',
-            title: 'Image',
-            author: 'author',
-            cols: 2,
-        },
-        {
-            img: 'https://material-ui.com/static/sponsors/doit-intl.png',
-            title: 'Image',
-            author: 'author',
-        },
-        {
-            img: 'https://material-ui.com/static/sponsors/doit-intl.png',
-            title: 'Image',
-            author: 'author',
-        },
-        {
-            img: 'https://material-ui.com/static/sponsors/doit-intl.png',
-            title: 'Image',
-            author: 'author',
-        },
-        {
-            img: 'https://material-ui.com/static/sponsors/doit-intl.png',
-            title: 'Image',
-            author: 'author',
+                const tokenCount = await cryptoPlantContract.methods.balanceOf(account).call()
+                console.log('Got balance', tokenCount)
+
+                let tokenDataList = []
+                for (let tokenIndex = 0; tokenIndex < tokenCount; tokenIndex++) {
+                    const token = await cryptoPlantContract.methods
+                        .tokenOfOwnerByIndex(account, tokenIndex)
+                        .call()
+                    console.log(`Token ${tokenIndex}: ${token}`)
+
+                    const tokenURI = await cryptoPlantContract.methods
+                        .tokenURI(tokenIndex)
+                        .call()
+                    console.log('Got token URI', tokenURI)
+
+                    const tokenDataResponse = await fetch(baseURI + token)
+                    const tokenData = await tokenDataResponse.json()
+                    console.log('Token data', tokenData)
+                    if (tokenData) {
+                        tokenDataList.push(tokenData)
+                    }
+                }
+                console.log('got token data list', tokenDataList)
+                setUserTokens(tokenDataList)
+            } catch (error) {
+                console.error(error)
+            }
         }
-    ]
+        getTokenData()
+
+    }, [])
 
     return (
         <Fragment>
@@ -65,10 +71,16 @@ export default function MyPlants ({ web3, cryptoPlantContract, account }) {
                     style={{ padding: '24px' }}
                 >
                     {
-                        tileData.map(tile =>
-                            <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
-                                <PlantCard />
-                            </Grid>)
+                        userTokens.map(tokenData =>
+
+                            <Grid key={tokenData.name} item xs={12} sm={6} md={4} lg={4} xl={3}>
+                                <PlantCard name={tokenData.name} description={tokenData.description} image={tokenData.image} />
+                            </Grid>
+                        )
+                        // tileData.map(tile =>
+                        //     <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
+                        //         <PlantCard />
+                        //     </Grid>)
                     }
                 </Grid>
             </Container>
