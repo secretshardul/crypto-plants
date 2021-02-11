@@ -22,6 +22,17 @@ module.exports = {
       gasPrice: 10000000000,
     }
   },
+  kovan: {
+    provider: function () {
+      return new HDWalletProvider(
+        process.env.MNEMONIC,
+        process.env.INFURA_KOVAN_ENDPOINT
+      )
+    },
+    network_id: 4,
+    gas: 4500000,
+    gasPrice: 10000000000,
+  },
   compilers: {
     solc: {
       version: '^0.7'
