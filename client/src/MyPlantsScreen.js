@@ -33,6 +33,9 @@ export default function MyPlants ({ web3, cryptoPlantContract, account }) {
                 const tokenCount = await cryptoPlantContract.methods.balanceOf(account).call()
                 console.log('Got balance', tokenCount)
 
+                const apiCallRequest = await cryptoPlantContract.methods.requestVolumeData().call()
+                console.log('apiCallRequest', apiCallRequest)
+
                 let tokenDataList = []
                 for (let tokenIndex = 0; tokenIndex < tokenCount; tokenIndex++) {
                     const token = await cryptoPlantContract.methods
