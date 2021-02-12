@@ -54,24 +54,23 @@ export default function MyPlants ({ web3, cryptoPlantContract, account }) {
                         .call()
                     console.log(`Token ${tokenIndex}: ${token}`)
 
-                    // const tokenURI = await cryptoPlantContract.methods
-                    //     .tokenURI(tokenIndex)
-                    //     .call()
-                    // console.log('Got token URI', tokenURI)
+                    const tokenURI = await cryptoPlantContract.methods
+                        .tokenURI(tokenIndex)
+                        .call()
+                    console.log('Got token URI', tokenURI)
 
-                    // const tokenDataResponse = await fetch(baseURI + token)
-                    // const tokenData = await tokenDataResponse.json()
-                    // console.log('Token data', tokenData)
-                    // if (tokenData) {
-                    //     tokenDataList.push(tokenData)
-                    // }
-                    const plantData = await getPlantData()
-                    tokenDataList.push(plantData)
+                    const tokenDataResponse = await fetch(tokenURI)
+                    const tokenData = await tokenDataResponse.json()
+                    console.log('Token data', tokenData)
+                    if (tokenData) {
+                        tokenDataList.push(tokenData)
+                    }
+
+                    // const plantData = await getPlantData()
+                    // tokenDataList.push(plantData)
                 }
                 console.log('got token data list', tokenDataList)
                 setUserTokens(tokenDataList)
-
-                await getPlantData()
             } catch (error) {
                 console.error(error)
             }
@@ -86,7 +85,7 @@ export default function MyPlants ({ web3, cryptoPlantContract, account }) {
         <Fragment>
             <ButtonAppBar />
             <Container align="center" justify="center" alignItems="center">
-                <Button onClick={makeApiCall} >Get API data</Button>
+                {/* <Button onClick={makeApiCall} >Get API data</Button> */}
 
                 <Grid container spacing={10}
                     style={{ padding: '24px' }}

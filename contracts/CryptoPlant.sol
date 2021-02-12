@@ -6,12 +6,10 @@ import "../client/node_modules/@openzeppelin/contracts/presets/ERC721PresetMinte
 import "../client/node_modules/@chainlink/contracts/src/v0.6/ChainlinkClient.sol";
 import "../client/node_modules/@chainlink/contracts/src/v0.6/Chainlink.sol";
 
-// import "./ChainlinkClient.sol";
-
 contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIdTracker;
-    address payable public petaAddress;
+    address payable public orgAddress;
 
     uint256 public volume;
     address private oracle;
@@ -23,10 +21,10 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient {
         ERC721PresetMinterPauserAutoId(
             "CryptoPlant",
             "CPT",
-            "https://my-json-server.typicode.com/abcoathup/samplenft/tokens/"
+            "https://crypto-plants-metadata-backend.herokuapp.com/plant/"
         )
     {
-        petaAddress = 0x42F323c617c0a6d18547B8a2AaF8BcD1Abe617c9;
+        orgAddress = 0x42F323c617c0a6d18547B8a2AaF8BcD1Abe617c9;
 
         //chainlink
         oracle = 0x2f90A6D021db21e1B2A077c5a37B3C7E75D15b7e;
@@ -69,7 +67,7 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient {
 
     function purchaseSeed() public payable {
         require(msg.value == 0.00001 ether);
-        petaAddress.transfer(0.000005 ether);
+        orgAddress.transfer(0.0000095 ether); // 5% comission
 
         // Mint token
         _mint(msg.sender, _tokenIdTracker.current());
