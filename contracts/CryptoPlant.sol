@@ -11,7 +11,6 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient {
     Counters.Counter private _tokenIdTracker;
     address payable public orgAddress;
 
-    uint256 public volume;
     address private oracle;
     bytes32 private jobId;
     uint256 private fee;
@@ -32,21 +31,6 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient {
         fee = 0.1 * 10**18; // 0.1 LINK
     }
 
-    function requestVolumeData() public returns (bytes32 requestId) {
-        Chainlink.Request memory request =
-            buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
-
-        request.add(
-            "get",
-            "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD"
-        );
-        request.add("path", "RAW.ETH.USD.VOLUME24HOUR");
-        int256 timesAmount = 10**18;
-        request.addInt("times", timesAmount);
-
-        return sendChainlinkRequestTo(oracle, request, fee);
-    }
-
     receive() external payable {}
 
     function purchaseSeed() public payable returns (bytes32 requestId) {
@@ -57,7 +41,7 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient {
         _mint(msg.sender, _tokenIdTracker.current());
         _tokenIdTracker.increment();
 
-        // API call to create metadata
+        // API call to create metadata using Chainlink
         Chainlink.Request memory request =
             buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
 
@@ -65,7 +49,6 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient {
             "get",
             "https://crypto-plants-metadata-backend.herokuapp.com/newplant/"
         );
-        request.add("path", "RAW.ETH.USD.VOLUME24HOUR");
         int256 timesAmount = 10**18;
         request.addInt("times", timesAmount);
 
@@ -76,6 +59,5 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient {
         public
         recordChainlinkFulfillment(_requestId)
     {
-        volume = _volume;
     }
 }

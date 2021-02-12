@@ -31,4 +31,6 @@ await nft.tokenOfOwnerByIndex("0x549deAF2d8819B49Bae0C4d43Da90D65dCBF29C9", 1) /
 # Website
 ```
 https://bafzbeiezgmuraf7qg3s4kjrxe3ngrgshucfbuo4eor5ra7pfqbnoc5o4za.textile.space/
+
+https://hub.textile.io/thread/bafkvyewj3wntdwjhlt6thd7tdkt6jhxfiuegduljqxtnalckchd7d2q/buckets/bafzbeig3nbhvalstx2ajleap2e36hnobtt4n2uhc46xu26dpbqzim36die
 ```
