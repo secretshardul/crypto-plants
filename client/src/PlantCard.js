@@ -10,10 +10,11 @@ import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
+        maxWidth: 300,
     },
     media: {
         height: 200,
+        width: 200,
     },
 })
 
@@ -37,14 +38,6 @@ export default function PlantCard ({ name, description, image }) {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions >
-                <Button size="small" color="primary">
-                    Share
-                </Button>
-                <Button size="small" color="primary">
-                    Learn More
-                </Button>
-            </CardActions>
         </Card>
     )
 }
