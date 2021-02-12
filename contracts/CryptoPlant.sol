@@ -44,33 +44,38 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient {
         int256 timesAmount = 10**18;
         request.addInt("times", timesAmount);
 
-        // Chainlink.add(
-        //     request,
-        //     "get",
-        //     "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD"
-        // );
-        // Chainlink.add(request, "path", "RAW.ETH.USD.VOLUME24HOUR");
-        // int256 timesAmount = 10**18;
-        // Chainlink.addInt(request, "times", timesAmount);
-
         return sendChainlinkRequestTo(oracle, request, fee);
-    }
-
-    function fulfill(bytes32 _requestId, uint256 _volume)
-        public
-        recordChainlinkFulfillment(_requestId)
-    {
-        volume = _volume;
     }
 
     receive() external payable {}
 
-    function purchaseSeed() public payable {
+    function purchaseSeed() public payable returns (bytes32 requestId) {
         require(msg.value == 0.00001 ether);
         orgAddress.transfer(0.0000095 ether); // 5% comission
 
         // Mint token
         _mint(msg.sender, _tokenIdTracker.current());
         _tokenIdTracker.increment();
+
+        // API call to create metadata
+        Chainlink.Request memory request =
+            buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
+
+        request.add(
+            "get",
+            "https://crypto-plants-metadata-backend.herokuapp.com/newplant/"
+        );
+        request.add("path", "RAW.ETH.USD.VOLUME24HOUR");
+        int256 timesAmount = 10**18;
+        request.addInt("times", timesAmount);
+
+        return sendChainlinkRequestTo(oracle, request, fee);
+    }
+
+     function fulfill(bytes32 _requestId, uint256 _volume)
+        public
+        recordChainlinkFulfillment(_requestId)
+    {
+        volume = _volume;
     }
 }

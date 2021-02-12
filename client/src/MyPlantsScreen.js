@@ -8,7 +8,6 @@ import ButtonAppBar from "./AppBar"
 import PlantCard from './components/PlantCard'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
-import getPlantData from './getPlantData'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,9 +37,6 @@ export default function MyPlants ({ web3, cryptoPlantContract, account }) {
     useEffect(() => {
         async function getTokenData () {
             try {
-                // const volume = await cryptoPlantContract.methods.volume().call()
-                // console.log('Got volume', volume)
-
                 const baseURI = await cryptoPlantContract.methods.baseURI().call()
                 console.log('Base URI', baseURI)
 
@@ -65,9 +61,6 @@ export default function MyPlants ({ web3, cryptoPlantContract, account }) {
                     if (tokenData) {
                         tokenDataList.push(tokenData)
                     }
-
-                    // const plantData = await getPlantData()
-                    // tokenDataList.push(plantData)
                 }
                 console.log('got token data list', tokenDataList)
                 setUserTokens(tokenDataList)
@@ -85,22 +78,21 @@ export default function MyPlants ({ web3, cryptoPlantContract, account }) {
         <Fragment>
             <ButtonAppBar />
             <Container align="center" justify="center" alignItems="center">
-                {/* <Button onClick={makeApiCall} >Get API data</Button> */}
+                {
+                    userTokens.length === 0
+                        ? <div style={{marginTop: 300}}>Your garden is empty! Go purchase some plants</div>
+                        : undefined
+                }
 
                 <Grid container spacing={10}
                     style={{ padding: '24px' }}
                 >
                     {
                         userTokens.map(tokenData =>
-
                             <Grid key={tokenData.name} item xs={12} sm={6} md={4} lg={4} xl={3}>
                                 <PlantCard name={tokenData.name} description={tokenData.description} image={tokenData.image} />
                             </Grid>
                         )
-                        // tileData.map(tile =>
-                        //     <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
-                        //         <PlantCard />
-                        //     </Grid>)
                     }
                 </Grid>
             </Container>
