@@ -28,6 +28,8 @@ function App () {
 
       const networkId = await web3.eth.net.getId()
       const network = CryptoPlantContract.networks[networkId]
+      console.log('Network ID', networkId)
+      // console.log('Contract address', network.address)
       const cryptoPlantContract = new web3.eth.Contract(
         CryptoPlantContract.abi,
         network && network.address,

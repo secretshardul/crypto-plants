@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7;
+pragma solidity ^0.6;
 
 import "../client/node_modules/@openzeppelin/contracts/utils/Counters.sol";
 import "../client/node_modules/@openzeppelin/contracts/presets/ERC721PresetMinterPauserAutoId.sol";
-import "../client/node_modules/@chainlink/contracts/src/v0.7/ChainlinkClient.sol";
-import "../client/node_modules/@chainlink/contracts/src/v0.7/Chainlink.sol";
+import "../client/node_modules/@chainlink/contracts/src/v0.6/ChainlinkClient.sol";
+import "../client/node_modules/@chainlink/contracts/src/v0.6/Chainlink.sol";
 
 // import "./ChainlinkClient.sol";
 
@@ -19,6 +19,7 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient {
     uint256 private fee;
 
     constructor()
+        public
         ERC721PresetMinterPauserAutoId(
             "CryptoPlant",
             "CPT",
@@ -37,22 +38,22 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient {
         Chainlink.Request memory request =
             buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
 
-        // request.add(
-        //     "get",
-        //     "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD"
-        // );
-        // request.add("path", "RAW.ETH.USD.VOLUME24HOUR");
-        // int256 timesAmount = 10**18;
-        // request.addInt("times", timesAmount);
-
-        Chainlink.add(
-            request,
+        request.add(
             "get",
             "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD"
         );
-        Chainlink.add(request, "path", "RAW.ETH.USD.VOLUME24HOUR");
+        request.add("path", "RAW.ETH.USD.VOLUME24HOUR");
         int256 timesAmount = 10**18;
-        Chainlink.addInt(request, "times", timesAmount);
+        request.addInt("times", timesAmount);
+
+        // Chainlink.add(
+        //     request,
+        //     "get",
+        //     "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=ETH&tsyms=USD"
+        // );
+        // Chainlink.add(request, "path", "RAW.ETH.USD.VOLUME24HOUR");
+        // int256 timesAmount = 10**18;
+        // Chainlink.addInt(request, "times", timesAmount);
 
         return sendChainlinkRequestTo(oracle, request, fee);
     }

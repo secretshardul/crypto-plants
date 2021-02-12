@@ -7,6 +7,7 @@ import GridListTile from '@material-ui/core/GridListTile'
 import ButtonAppBar from "./AppBar"
 import PlantCard from './PlantCard'
 import { makeStyles } from '@material-ui/core/styles'
+import { Button } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,17 +25,26 @@ const useStyles = makeStyles((theme) => ({
 export default function MyPlants ({ web3, cryptoPlantContract, account }) {
     const classes = useStyles()
     const [userTokens, setUserTokens] = useState([])
+    async function makeApiCall () {
+        const apiCallRequest = await cryptoPlantContract.methods.requestVolumeData().send({
+            from: account,
+            gas: 1500000,
+            gasPrice: '30000'
+        })
+        console.log('apiCallRequest', apiCallRequest)
+    }
+
     useEffect(() => {
         async function getTokenData () {
             try {
+                const volume = await cryptoPlantContract.methods.volume().call()
+                console.log('Got volume', volume)
+
                 const baseURI = await cryptoPlantContract.methods.baseURI().call()
                 console.log('Base URI', baseURI)
 
                 const tokenCount = await cryptoPlantContract.methods.balanceOf(account).call()
                 console.log('Got balance', tokenCount)
-
-                const apiCallRequest = await cryptoPlantContract.methods.requestVolumeData().call()
-                console.log('apiCallRequest', apiCallRequest)
 
                 let tokenDataList = []
                 for (let tokenIndex = 0; tokenIndex < tokenCount; tokenIndex++) {
@@ -69,6 +79,7 @@ export default function MyPlants ({ web3, cryptoPlantContract, account }) {
         <Fragment>
             <ButtonAppBar />
             <Container align="center" justify="center" alignItems="center">
+                <Button onClick={makeApiCall} >Get API data</Button>
 
                 <Grid container spacing={10}
                     style={{ padding: '24px' }}
