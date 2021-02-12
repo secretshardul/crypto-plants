@@ -18,8 +18,8 @@ export default function PurchasePlantScreen ({ web3, cryptoPlantContract, accoun
                 .send({
                     from: account,
                     gas: 1500000,
-                    gasPrice: '30000',
-                    value: utils.toWei('0.1', 'ether')
+                    gasPrice: '300000000',
+                    value: utils.toWei('0.00001', 'ether')
                 })
 
             console.log('Seed purchase response', purchaseSeed)

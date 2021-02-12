@@ -68,9 +68,8 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient {
     receive() external payable {}
 
     function purchaseSeed() public payable {
-        require(msg.value == 0.1 ether);
-
-        petaAddress.transfer(0.09 ether);
+        require(msg.value == 0.00001 ether);
+        petaAddress.transfer(0.000005 ether);
 
         // Mint token
         _mint(msg.sender, _tokenIdTracker.current());
