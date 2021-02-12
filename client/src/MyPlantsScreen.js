@@ -8,6 +8,7 @@ import ButtonAppBar from "./AppBar"
 import PlantCard from './PlantCard'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
+import getPlantData from './getPlantData'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -53,25 +54,31 @@ export default function MyPlants ({ web3, cryptoPlantContract, account }) {
                         .call()
                     console.log(`Token ${tokenIndex}: ${token}`)
 
-                    const tokenURI = await cryptoPlantContract.methods
-                        .tokenURI(tokenIndex)
-                        .call()
-                    console.log('Got token URI', tokenURI)
+                    // const tokenURI = await cryptoPlantContract.methods
+                    //     .tokenURI(tokenIndex)
+                    //     .call()
+                    // console.log('Got token URI', tokenURI)
 
-                    const tokenDataResponse = await fetch(baseURI + token)
-                    const tokenData = await tokenDataResponse.json()
-                    console.log('Token data', tokenData)
-                    if (tokenData) {
-                        tokenDataList.push(tokenData)
-                    }
+                    // const tokenDataResponse = await fetch(baseURI + token)
+                    // const tokenData = await tokenDataResponse.json()
+                    // console.log('Token data', tokenData)
+                    // if (tokenData) {
+                    //     tokenDataList.push(tokenData)
+                    // }
+                    const plantData = await getPlantData()
+                    tokenDataList.push(plantData)
                 }
                 console.log('got token data list', tokenDataList)
                 setUserTokens(tokenDataList)
+
+                await getPlantData()
             } catch (error) {
                 console.error(error)
             }
         }
         getTokenData()
+
+
 
     }, [])
 
