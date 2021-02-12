@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import GridList from '@material-ui/core/GridList'
 import GridListTile from '@material-ui/core/GridListTile'
 import ButtonAppBar from "./AppBar"
-import PlantCard from './PlantCard'
+import PlantCard from './components/PlantCard'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 import getPlantData from './getPlantData'
