@@ -37,8 +37,8 @@ export default function MyPlants ({ web3, cryptoPlantContract, account }) {
     useEffect(() => {
         async function getTokenData () {
             try {
-                const volume = await cryptoPlantContract.methods.volume().call()
-                console.log('Got volume', volume)
+                // const volume = await cryptoPlantContract.methods.volume().call()
+                // console.log('Got volume', volume)
 
                 const baseURI = await cryptoPlantContract.methods.baseURI().call()
                 console.log('Base URI', baseURI)
