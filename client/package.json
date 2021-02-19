@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
+    "@portis/web3": "^3.0.8",
     "node-fetch": "^2.6.1",
     "react": "16.11.0",
     "react-dom": "16.11.0",
