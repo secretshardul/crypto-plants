@@ -9,6 +9,11 @@ truffle develop
 compile
 migrate
 
+# Migrate for specific network
+migrate --network rinkeby
+
+# JSON issue fix
+migrate --network rinkeby --reset
 
 # Transfer eth to metamask wallet
 curl -X POST http://127.0.0.1:8545/ \
