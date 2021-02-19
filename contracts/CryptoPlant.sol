@@ -33,7 +33,8 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient {
 
     receive() external payable {}
 
-    function purchaseSeed() public payable returns (bytes32 requestId) {
+    // function purchaseSeed() public payable returns (bytes32 requestId) {
+    function purchaseSeed() public payable {
         require(msg.value == 0.00001 ether);
         orgAddress.transfer(0.0000095 ether); // 5% comission
 
@@ -52,10 +53,10 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient {
         int256 timesAmount = 10**18;
         request.addInt("times", timesAmount);
 
-        return sendChainlinkRequestTo(oracle, request, fee);
+        // return sendChainlinkRequestTo(oracle, request, fee);
     }
 
-     function fulfill(bytes32 _requestId, uint256 _volume)
+    function fulfill(bytes32 _requestId, uint256 _volume)
         public
         recordChainlinkFulfillment(_requestId)
     {

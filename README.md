@@ -20,6 +20,7 @@ curl -X POST http://127.0.0.1:8545/ \
 # Commands
 1. Get all tokens for address
 ```js
+nft = await CryptoPlant.deployed()
 await nft.balanceOf("0x549deAF2d8819B49Bae0C4d43Da90D65dCBF29C9") // get token count
 await nft.tokenOfOwnerByIndex("0x549deAF2d8819B49Bae0C4d43Da90D65dCBF29C9", 1) // loop from 0 to count-1
 ```
