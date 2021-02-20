@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@chainlink/contracts": "^0.1.6",
+    "@opengsn/gsn": "^2.1.0",
     "@openzeppelin/contracts": "^3.4.0"
   }
 }
