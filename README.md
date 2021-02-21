@@ -22,6 +22,9 @@ curl -X POST http://127.0.0.1:8545/ \
 # to: metamask address
 ```
 
+## Signature
+- Portis error: `0x9093999349fb471f39ef2b6c174615320baaabb0077e2e0429856af6b927298368f58ebf87320cd43872dda59039a53b7887b0a8f0e61ae61a61c2ff2ede4c171b`
+- Metamask working: `0x4f2e4236f9e3dff5b0570798122a099fbadda6f393a3afb393035e320a06d30b1a10269b80a3182669df53409907a74e56f9dedadffc39b06d0bfb65309f316f1b`
 # Commands
 1. Get all tokens for address
 ```js

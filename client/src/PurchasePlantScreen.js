@@ -15,10 +15,11 @@ export default function PurchasePlantScreen ({ web3, cryptoPlantContract, accoun
         try {
             const purchaseSeed = await cryptoPlantContract.methods
                 .purchaseSeed()
+                // .sendEther()
                 .send({
                     from: account,
                     gas: 1500000,
-                    gasPrice: '300000000',
+                    gasPrice: '80000000000',
                     value: utils.toWei('0.00001', 'ether')
                 })
 
@@ -30,7 +31,7 @@ export default function PurchasePlantScreen ({ web3, cryptoPlantContract, accoun
     return (
         <Fragment>
             <ButtonAppBar />
-            <Container align="center" justify="center" alignItems="center" maxWidth="lg">
+            <Container align="center" justify="center" maxWidth="lg">
 
                 <Typography variant="h4" style={{ marginTop: 20 }}>
                     Select a seed

@@ -936,12 +936,12 @@
     "80001": {
       "events": {},
       "links": {},
-      "address": "0x02F97EE0e58766909B6E9D3f856AB18c4DD1aDe6",
-      "transactionHash": "0x48bfd23c5d5af6af05d5fbb8d21fa1fed1e06b9966fb814bcaf341da7eb8a9f6"
+      "address": "0x934f89B153cEFEb572f3100aDC95982Ea0a4e003",
+      "transactionHash": "0x9cfcf0acf8371acb1b3d740e103420380279f0d92a7c7210bd2f960220e74087"
     }
   },
-  "schemaVersion": "3.3.3",
-  "updatedAt": "2021-02-20T12:53:29.330Z",
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-02-21T03:48:45.075Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

@@ -42,8 +42,8 @@ export default function CharityCard ({ name, image, description, purchaseHandler
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions align="center" justify="center" alignItems="center">
-                <Container align="center" justify="center" alignItems="center">
+            <CardActions align="center" justify="center">
+                <Container align="center" justify="center">
                     <Button
                         variant="contained"
                         color="primary"

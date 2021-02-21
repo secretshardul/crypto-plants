@@ -44,7 +44,7 @@ export default function MyPlants ({ web3, cryptoPlantContract, account }) {
     return (
         <Fragment>
             <ButtonAppBar />
-            <Container align="center" justify="center" alignItems="center">
+            <Container align="center" justify="center" >
                 {
                     userTokens.length === 0
                         ? <div style={{marginTop: 300}}>Your garden is empty! Go purchase some plants</div>

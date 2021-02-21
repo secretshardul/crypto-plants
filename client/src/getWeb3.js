@@ -1,6 +1,8 @@
-import Web3 from "web3";
-import Portis from '@portis/web3';
+import Web3 from "web3"
+import Portis from '@portis/web3'
+import { Biconomy } from "@biconomy/mexa"
 
+const BICONOMY_KEY = 'B40ctU1aB.49214ae3-c3eb-49d6-b65b-26abfb704736'
 const getWeb3 = () =>
   new Promise((resolve, reject) => {
     // Wait for loading completion to avoid race conditions with web3 injection timing.
@@ -8,20 +10,35 @@ const getWeb3 = () =>
 
       // Portis on Mumbai
       // const portis = new Portis('a9ccf4c8-d26d-4d3f-b67e-cc95a5dae7b7', 'maticMumbai')
-      // const web3 = new Web3(portis.provider);
+      // const biconomy = new Biconomy(portis.provider, {
+      //   apiKey: BICONOMY_KEY,
+      //   debug: true,
+      //   // strictMode: true,
+      // })
+      // const web3 = new Web3(biconomy);
       // resolve(web3)
 
-      // Modern dapp browsers...
+
       if (window.ethereum) {
-        const web3 = new Web3(window.ethereum);
-        try {
-          // Request account access if needed
-          await window.ethereum.enable();
-          // Acccounts now exposed
-          resolve(web3);
-        } catch (error) {
-          reject(error);
-        }
+        const biconomy = new Biconomy(window.ethereum, {
+          apiKey: BICONOMY_KEY,
+          debug: true,
+          // strictMode: true,
+        })
+        biconomy.onEvent(biconomy.READY, async () => {
+          console.log('Biconomy ready')
+          const web3 = new Web3(biconomy)
+          try {
+            await window.ethereum.enable()
+            resolve(web3)
+          } catch (error) {
+            reject(error)
+          }
+        }).onEvent(biconomy.ERROR, (error, message) => {
+          console.log('Biconomy error', error)
+          reject(error)
+        });
+
       }
       // Legacy dapp browsers...
       else if (window.web3) {
