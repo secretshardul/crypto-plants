@@ -32,6 +32,17 @@ module.exports = {
       gas: 5000000,
       gasPrice: 25000000000,
     },
+    goreli: {
+      provider: function () {
+        return new HDWalletProvider(
+          process.env.MNEMONIC,
+          process.env.INFURA_GORELI_ENDPOINT
+        )
+      },
+      network_id: 5,
+      gas: 5000000,
+      gasPrice: 25000000000,
+    },
     matic: {
       provider: function () {
         return new HDWalletProvider(

@@ -62,6 +62,13 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient, BaseRel
         // return sendChainlinkRequestTo(oracle, request, fee);
     }
 
+    // TODO add access control
+    // Call after starting superflow stream
+    function purchaseSubscription() public {
+        _mint(_msgSender(), _tokenIdTracker.current());
+        _tokenIdTracker.increment();
+    }
+
     function fulfill(bytes32 _requestId, uint256 _volume)
         public
         recordChainlinkFulfillment(_requestId)

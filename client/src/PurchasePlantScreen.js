@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { utils } from "web3"
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
@@ -7,11 +7,14 @@ import PlantCard from './components/PlantCard'
 import ButtonAppBar from "./AppBar"
 import { Typography } from '@material-ui/core'
 import CharityCard from './components/CharityCard'
+import PurchaseDialog from './components/PurchaseDialog'
 
 export default function PurchasePlantScreen ({ web3, cryptoPlantContract, account }) {
-    async function purchaseSeed () {
-        console.log('Purchasing seed')
+    const [showDialog, setDialogState] = useState(false)
 
+    async function purchaseSeed () {
+        setDialogState(false)
+        console.log('Purchasing seed')
         try {
             const purchaseSeed = await cryptoPlantContract.methods
                 .purchaseSeed()
@@ -30,6 +33,7 @@ export default function PurchasePlantScreen ({ web3, cryptoPlantContract, accoun
     }
 
     async function purchaseSubscription () {
+        setDialogState(false)
         const fUSDC = '0x8aE68021f6170E5a766bE613cEA0d75236ECCa9a'
         const charityAddress = '0x42F323c617c0a6d18547B8a2AaF8BcD1Abe617c9'
 
@@ -38,19 +42,32 @@ export default function PurchasePlantScreen ({ web3, cryptoPlantContract, accoun
             tokens: ['fUSDC']
         })
         await sf.initialize()
-        const carol = sf.user({
+        const currentUser = sf.user({
             address: account,
             token: fUSDC
         })
 
-        await carol.flow({
+        await currentUser.flow({
             recipient: '0x42F323c617c0a6d18547B8a2AaF8BcD1Abe617c9',
-            flowRate: '0'
+            flowRate: '100000'
         })
 
-        const details = await carol.details()
+        const details = await currentUser.details()
         console.log(details)
+
+        // TODO issue token using super contract
+        const purchaseSeed = await cryptoPlantContract.methods
+            .purchaseSubscription()
+            .send({
+                from: account,
+                gas: 1500000,
+                gasPrice: '80000000000',
+            })
     };
+
+    function donateHandler() {
+        setDialogState(true)
+    }
 
     return (
         <Fragment>
@@ -67,8 +84,7 @@ export default function PurchasePlantScreen ({ web3, cryptoPlantContract, accoun
                             name="World Wildlife Fund (WWF)"
                             description="Support WWF's groundbreaking work in protecting biodiversity. The funds will be used towards endangered species protection."
                             image="https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/wwf-512.png"
-                            purchaseHandler={purchaseSeed}
-                            subscribeHandler={purchaseSubscription}
+                            purchaseHandler={donateHandler}
                         />
                     </Grid>
 
@@ -102,6 +118,7 @@ export default function PurchasePlantScreen ({ web3, cryptoPlantContract, accoun
                         />
                     </Grid>
                 </Grid>
+                <PurchaseDialog open={showDialog} setDialogState={setDialogState} handlePurchase={purchaseSeed} handleSubscribe={purchaseSubscription} />
             </Container>
         </Fragment>
     )

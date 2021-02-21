@@ -54,22 +54,7 @@ export default function CharityCard ({
                         onClick={purchaseHandler}
                         className={classes.purchaseButton}
                     >
-                        {
-                            comingSoon
-                                ? 'Coming Soon'
-                                : 'Buy for $10'
-                        }
-                    </Button>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        "Become a member"
-                    </Typography>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        disabled={comingSoon}
-                        onClick={subscribeHandler}
-                    >
-                        Become a member ($ 100/year)
+                        Donate
                     </Button>
                 </Container>
 
