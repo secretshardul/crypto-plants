@@ -23,7 +23,9 @@ const useStyles = makeStyles({
     }
 })
 
-export default function CharityCard ({ name, image, description, purchaseHandler, comingSoon = false }) {
+export default function CharityCard ({
+    name, image, description, purchaseHandler, subscribeHandler, comingSoon = false
+}) {
     const classes = useStyles()
 
     return (
@@ -57,6 +59,17 @@ export default function CharityCard ({ name, image, description, purchaseHandler
                                 ? 'Coming Soon'
                                 : 'Buy for $10'
                         }
+                    </Button>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        "Become a member"
+                    </Typography>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        disabled={comingSoon}
+                        onClick={subscribeHandler}
+                    >
+                        Become a member ($ 100/year)
                     </Button>
                 </Container>
 

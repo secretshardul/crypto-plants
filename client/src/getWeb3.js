@@ -20,25 +20,32 @@ const getWeb3 = () =>
 
 
       if (window.ethereum) {
-        const biconomy = new Biconomy(window.ethereum, {
-          apiKey: BICONOMY_KEY,
-          debug: true,
-          // strictMode: true,
-        })
-        biconomy.onEvent(biconomy.READY, async () => {
-          console.log('Biconomy ready')
-          const web3 = new Web3(biconomy)
-          try {
-            await window.ethereum.enable()
-            resolve(web3)
-          } catch (error) {
-            reject(error)
-          }
-        }).onEvent(biconomy.ERROR, (error, message) => {
-          console.log('Biconomy error', error)
-          reject(error)
-        });
+        // const biconomy = new Biconomy(window.ethereum, {
+        //   apiKey: BICONOMY_KEY,
+        //   debug: true,
+        //   // strictMode: true,
+        // })
+        // biconomy.onEvent(biconomy.READY, async () => {
+        //   console.log('Biconomy ready')
+        //   const web3 = new Web3(biconomy)
+        //   try {
+        //     await window.ethereum.enable()
+        //     resolve(web3)
+        //   } catch (error) {
+        //     reject(error)
+        //   }
+        // }).onEvent(biconomy.ERROR, (error, message) => {
+        //   console.log('Biconomy error', error)
+        //   reject(error)
+        // });
 
+        const web3 = new Web3(window.ethereum)
+        try {
+          await window.ethereum.enable()
+          resolve(web3)
+        } catch (error) {
+          reject(error)
+        }
       }
       // Legacy dapp browsers...
       else if (window.web3) {

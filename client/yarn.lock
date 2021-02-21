@@ -1269,7 +1269,7 @@
   dependencies:
     "@ethersproject/bignumber" "^5.0.13"
 
-"@ethersproject/contracts@5.0.11":
+"@ethersproject/contracts@^5.0.10", "@ethersproject/contracts@5.0.11":
   "integrity" "sha512-FTUUd/6x00dYL2VufE2VowZ7h3mAyBfCQMGwI3tKDIWka+C0CunllFiKrlYCdiHFuVeMotR65dIcnzbLn72MCw=="
   "resolved" "https://registry.npmjs.org/@ethersproject/contracts/-/contracts-5.0.11.tgz"
   "version" "5.0.11"
@@ -1284,7 +1284,7 @@
     "@ethersproject/logger" "^5.0.8"
     "@ethersproject/properties" "^5.0.7"
 
-"@ethersproject/hash@^5.0.10", "@ethersproject/hash@>=5.0.0-beta.128", "@ethersproject/hash@5.0.11":
+"@ethersproject/hash@^5.0.10", "@ethersproject/hash@^5.0.11", "@ethersproject/hash@>=5.0.0-beta.128", "@ethersproject/hash@5.0.11":
   "integrity" "sha512-H3KJ9fk33XWJ2djAW03IL7fg3DsDMYjO1XijiUb1hJ85vYfhvxu0OmsU7d3tg2Uv1H1kFSo8ghr3WFQ8c+NL3g=="
   "resolved" "https://registry.npmjs.org/@ethersproject/hash/-/hash-5.0.11.tgz"
   "version" "5.0.11"
@@ -1872,6 +1872,13 @@
   "resolved" "https://registry.npmjs.org/@sindresorhus/is/-/is-0.14.0.tgz"
   "version" "0.14.0"
 
+"@superfluid-finance/js-sdk@^0.3.5":
+  "integrity" "sha512-MMv0SIuEfDsBVgox98E1h/UoHMZfmx240p6rqR1favqLNH3jwKvXFGHAc5Xw/hcT36KkFXMk7xqGmRPlfB1dNg=="
+  "resolved" "https://registry.npmjs.org/@superfluid-finance/js-sdk/-/js-sdk-0.3.5.tgz"
+  "version" "0.3.5"
+  dependencies:
+    "@ethersproject/hash" "^5.0.11"
+
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   "integrity" "sha512-j7KnilGyZzYr/jhcrSYS3FGWMZVaqyCG0vzMCwzvei0coIkczuYMcniK07nI0aHJINciujjH11T72ICW5eL5Ig=="
   "resolved" "https://registry.npmjs.org/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-4.2.0.tgz"
@@ -2016,7 +2023,7 @@
     "crypto-js" "^3.1.9-1"
     "debug" "^4.1.0"
 
-"@truffle/contract@^4.2.29":
+"@truffle/contract@^4.2.29", "@truffle/contract@^4.3.6", "@truffle/contract@4.3.6":
   "integrity" "sha512-XcIZ4eG1BrkoW30ZYTEqQGskmB2a2CoFJOLDjo2heP8xx+mKAPI0ceg2Ym4PbBUtqPBL6CiWE2WRh2zpFWPrOw=="
   "resolved" "https://registry.npmjs.org/@truffle/contract/-/contract-4.3.6.tgz"
   "version" "4.3.6"
