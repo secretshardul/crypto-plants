@@ -5,7 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom"
-import CryptoPlantContract from "./contracts/CryptoPlant.json"
+import CryptoPlantJson from "./contracts/CryptoPlant.json"
 import getWeb3 from "./getWeb3"
 
 import "./App.css"
@@ -27,11 +27,11 @@ function App () {
       setAccount(accounts[0])
 
       const networkId = await web3.eth.net.getId()
-      const network = CryptoPlantContract.networks[networkId]
+      const network = CryptoPlantJson.networks[networkId]
       console.log('Network ID', networkId)
       // console.log('Contract address', network.address)
       const cryptoPlantContract = new web3.eth.Contract(
-        CryptoPlantContract.abi,
+        CryptoPlantJson.abi,
         network && network.address,
       )
       setCryptoPlantContract(cryptoPlantContract)

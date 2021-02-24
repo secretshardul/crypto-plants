@@ -31,8 +31,8 @@ contract CryptoPlant is ERC721PresetMinterPauserAutoId, ChainlinkClient, BaseRel
         jobId = "29fa9aa13bf1468788b7cc4a500a45b8";
         fee = 0.1 * 10**18; // 0.1 LINK
 
-        // Biconomy
-        trustedForwarder = 0x2B99251eC9650e507936fa9530D11dE4d6C9C05c;
+        // ERC20 forwarder
+        trustedForwarder = 0x58697867383da03CBA35617BFbb3c0f6f91074d8;
     }
 
     receive() external payable {}
